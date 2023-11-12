@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Harmonic Astrology - Enter planetary positions for personalized insights.">
+    <title>Harmonic Astrology</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #2A2F4F;
+            min-height: 100vh;
+            width: auto; 
+            padding-right: 1rem;
+            padding-left: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 1rem;
+            text-align: center;               
+        }
+
+        h1 {
+            font-family: "Helvetica Neue", Arial, sans-serif;;
+            font-size: 6rem;
+            color: #FDE2F3;
+        }
+
+        .planet-name {
+            font-weight: bold;
+        }
+
+        .planet-container {            
+            border: solid 5px #FDE2F3;
+            background-color: #FDE2F3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            height: auto;
+            padding: 2rem;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 5rem;
+            flex-wrap: wrap;
+            width: 100%;
+            padding-right: 2rem;
+            padding-left: 1rem;
+            margin-right: 2rem;
+            margin-left: 2rem;        
+        }
+
+        .planet {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .button {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            margin-bottom: 3rem;
+            margin-top: 3rem;
+        }
+
+        .planet-degree {
+            width: 10rem;
+        }
+
+        .planet-min  {
+            width: 10rem;
+        }
+
+        .planet-sign {
+            width: 14rem;
+        }
+
+        .planet-name {
+            width: 8rem;
+        }
+  
+        
+        @media (min-width: 769px) and(max-width: 992px) {
+        .planet-degree {
+            width: 6rem;
+        }
+
+        .planet-min  {
+            width:6rem;
+        }
+
+        .planet-sign {
+            width: 8rem;
+        }
+
+        .planet-name {
+            width: 5rem;
+            margin-left: 3.5rem;
+        }
+
+        .container {
+            justify-content: start;        
+        }
+        } 
+
+        @media (min-width: 481px) and (max-width: 768px) {
+        .planet {
+            flex-direction: column;
+            height: auto;
+        }
+        .planet-container {
+            height: auto;
+        }
+        h1 {
+            font-family: sans;
+            font-size: 3rem;
+            color: #FDE2F3;
+        }
+
+        .planet-degree {
+            width: 10rem;
+
+        }
+
+        .planet-min  {
+            width: 10rem;
+        }
+
+        .planet-sign {
+            width: 14rem;
+        }
+
+        .planet-name {
+            width: 8rem;
+            margin-left: 3.5rem;
+        }
+
+        } 
+        
+        
+        @media (min-width: 319px) and (max-width: 480px) 
+        {        
+            .planet {
+            flex-direction: column;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+        .planet-container {
+            height: auto;
+        }
+        h1 {
+            font-family: sans;
+            font-size: 3rem;
+            color: #FDE2F3;
+        }
+
+        .planet-degree {
+            width: 10rem;
+
+        }
+
+        .planet-min  {
+            width: 10rem;
+        }
+
+        .planet-sign {
+            width: 14rem;
+        }
+
+        .planet-name {
+            width: 8rem;
+            margin-left: 3.5rem;
+        }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            margin-left: 0;
+            margin-right: 0;
+            background: radial-gradient(#2A2F4F, #FDE2F3);
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="heading">
+    <header class="heading">
+        <h1>Harmonic Astrology</h1>
+    </header>
+    </div>
+    
+    <div class="planet-container">
+        <div class="sun planet">
+            <div class="planet-name">
+                Sun
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateSun" class="form-select">
+                    <option selected>&#x2609; Select Sun Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                  </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Sun Degree" aria-label="Sun Degree" min="0" max="30" pattern="[0-9]{1,2}" title="Enter a number between 0 and 30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Sun Minute" aria-label="Sun Minute" min="0" max="59">
+            </div>
+        </div>
+
+        <div class="moon planet">
+            <div class="planet-name">
+                Moon
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateMoon" class="form-select">
+                    <option selected>&#9789; Select Moon Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Moon Degree" aria-label="Moon Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Moon Minute" aria-label="Moon Minute"  min="0" max="59">
+            </div>
+        </div>
+
+        <div class="mercury planet">
+            <div class="planet-name">
+                Mercury
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateMercury" class="form-select">
+                    <option selected>&#9791; Select Mercury Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Mercury Degree" aria-label="Mercury Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Mercury Minute" aria-label="Mercury Minute"  min="0" max="59">
+            </div>
+        </div>
+        
+        <div class="venus planet">
+            <div class="planet-name">
+                Venus
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateVenus" class="form-select">
+                    <option selected>&#9792; Select Venus Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                  </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Venus Degree" aria-label="Venus Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Venus Minute" aria-label="Venus Minute"  min="0" max="59">
+            </div>
+        </div>
+        <div class="mars planet">
+            <div class="planet-name">
+                Mars
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateMars" class="form-select">
+                    <option selected>&#9794;  Select Mars Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Mars Degree" aria-label="Mars Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Mars Minute" aria-label="Mars Minute" min="0" max="59">
+            </div>
+        </div>
+        
+        <div class="jupiter planet">
+            <div class="planet-name">
+                Jupiter
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateJupiter" class="form-select">
+                    <option selected>&#9795; Select Jupiter Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                  </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Jupiter Degree" aria-label="Jupiter Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Jupiter Minute" aria-label="Jupiter Minute"  min="0" max="59">
+            </div>
+        </div>
+        
+        <div class="saturn planet">
+            <div class="planet-name">
+                Saturn
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateSaturn" class="form-select">
+                    <option selected>&#9796; Select Saturn Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Saturn Degree" aria-label="Saturn Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Saturn Minute" aria-label="Saturn Minute"  min="0" max="59">
+            </div>
+        </div>
+        
+        <div class="uranus planet">
+            <div class="planet-name">
+                Uranus
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateUranus" class="form-select">
+                    <option selected>&#9797;  Select Uranus Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Uranus Degree" aria-label="Uranus Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Uranus Minute" aria-label="Uranus Minute"  min="0" max="59">
+            </div>
+        </div>
+        
+        <div class="neptune planet">
+            <div class="planet-name">
+                Neptune
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateNeptune" class="form-select">
+                    <option selected>&#9798; Select Neptune Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Neptune Degree" aria-label="Neptune Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Neptune Minute" aria-label="Neptune Minute"  min="0" max="59">
+            </div>
+        </div> 
+
+        <div class="pluto planet">
+            <div class="planet-name">
+                Pluto
+            </div>
+            <div class="planet-sign">
+                <select id="inputStatePluto" class="form-select">
+                    <option selected>&#9799; Select Pluto Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Pluto Degree" aria-label="Pluto Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Pluto Minute" aria-label="Pluto Minute"  min="0" max="59">
+            </div>
+        </div> 
+        <div class="chiron planet">
+            <div class="planet-name">
+                Chiron
+            </div>
+            <div class="planet-sign">
+                <select id="inputStateChiron" class="form-select">
+                    <option selected>&#9911; Select Chiron Sign</option>
+                    <option value="Aries">Aries ♈</option>
+                    <option value="Taurus">Taurus ♉</option>
+                    <option value="Gemini">Gemini ♊</option>
+                    <option value="Cancer">Cancer ♋</option>
+                    <option value="Leo">Leo ♌</option>
+                    <option value="Virgo">Virgo ♍</option>
+                    <option value="Libra">Libra ♎</option>
+                    <option value="Scorpio">Scorpio ♏</option>
+                    <option value="Sagittarius">Sagittarius ♐</option>
+                    <option value="Capricorn">Capricorn ♑</option>
+                    <option value="Aquarius">Aquarius ♒</option>
+                    <option value="Pisces">Pisces ♓</option>
+                </select>
+            </div>
+            <div class="planet-degree">
+                <input type="number" class="form-control" placeholder="Chiron Degree" aria-label="Chiron Degree" min="0" max="30">
+            </div>
+            <div class="planet-min">
+                <input type="number" class="form-control" placeholder="Chiron Minute" aria-label="Chiron Minute"  min="0" max="59">
+            </div>
+        </div> 
+        <div class="button">
+            <button type="button" class="btn btn-light">Submit</button>
+        </div>
+    </div>
+</div>
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
